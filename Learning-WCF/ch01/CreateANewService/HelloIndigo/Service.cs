@@ -3,7 +3,7 @@
 namespace HelloIndigo
 {
     [ServiceContract(Namespace="http://www.thatindigogirl.com/samples/2006/06")]
-    internal interface IHelloIndigoService
+    public interface IHelloIndigoService
     {
         [OperationContract]
         string HelloIndigo();
