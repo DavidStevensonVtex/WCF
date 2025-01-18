@@ -197,3 +197,9 @@ A _behavior_ modifies the way messages are processed as they flow through the ch
 There are behaviors to control many service model features such as exposing metadata, authentication and authorization, transactions, message throttling, and more.
 
 Behaviors are enabled either in configuration or by applying behavior attributes in client proxies and services.
+
+### Creating a New Service from Scratch
+
+1. Create a new service contract and service implementation.
+1. Programmatically configure a service host, its endpoints, and bindings.
+1. Create a client application and open a client channel proxy to invoke the service.
