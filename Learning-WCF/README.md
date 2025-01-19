@@ -205,3 +205,25 @@ Behaviors are enabled either in configuration or by applying behavior attributes
 1. Create a client application and open a client channel proxy to invoke the service.
 
 Visual Studio 2022 will need to be opened as Administrator to run this application.
+
+#### Assembly Allocation
+
+Three projects: one for the service, another for the host, and another for the client.
+
+This approach allows you to expose a service behind the firewall over TCP, and yet also allow remote, interoperable clients to consume it over HTTP. These two approaches require distinct hosting environments (specifically, a Windows service and IIS).
+
+It is recommended that you create a separate projectx for service contracts and services.
+
+Business logic has no place in the service assembly.
+
+Business functionality should never be coupled with the service implementation because it is possible that multiple services and applications may need to reuse the same business logic. If business logic is stored in its own assemblies, this type of sharing is made easy.
+
+Another reason to decouple business logic from service implementation is to improve manageability and versioning.
+The service tier may need to coordinate logging activities and exception handling around calls to business components, and the service tier may need to be versioned, while business components and associated functionality have not changed.
+
+A separate set of assemblies for:
+
+-   Host
+-   Service
+-   Business Components
+-   Data Access
