@@ -467,3 +467,37 @@ As you've seen, the `ServiceHost` is initialized by the <service> configuration 
 Behaviors affect the service model locally at the client or service. Behaviors are not exposed as part of the metadata, and they are not shared between clients and services. Instead, they locally affect how the service model processes messages.
 
 Behaviors can be defined in configuration or in code. Different behaviors are available to clients and services.
+
+##### Service behaviors
+
+Service behaviors are types that implement `IServiceBehavior` from the `System.ServiceModel.Description` namespace.
+
+There are service behaviors to control debugging, metadata, security features, serialization, and throttling.
+
+When enabled, each behavior interacts with the service model to achieve its goal.
+
+For example, when the metadata behavior is enabled, the service model will allow requests to a metadata exchange endpoint.
+
+```
+<behaviors>
+    <serviceBehaviors>
+        <behavior name="serviceBehavior">
+            <serviceMetadata httpGetEnabled="true" httpsGetEnabled="true" />
+            <serviceDebug includeExceptionDetailInFaults="false" />
+        </behavior>
+    </serviceBehaviors>
+</behaviors>
+```
+
+To associate a set of behaviors with a service use the behaviorConfiguration attribute of the `<service>` section.
+
+```
+<service behaviorConfiguration="serviceBehavior" name="Host.HelloIndigoService">
+    ...
+</service>
+```
+
+You can also programmatically configure service behaviors throug the `ServiceHost` instance.
+The `Description` property of the `ServiceHost` has a Behaviors collection.
+You can see if a behavior exists by calling the `Find<T>()` method on the collection.
+You can add new behaviors by calling `Add()` on the collection.
