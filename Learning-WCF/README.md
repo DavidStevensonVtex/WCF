@@ -459,3 +459,11 @@ Supplying the endpoint is not sufficient on its own. The service metadata behavi
     </services>
 </system.serviceModel>
 ```
+
+#### Working with Behaviors
+
+As you've seen, the `ServiceHost` is initialized by the <service> configuration section associated with its service type. At least one endpoint must be configured for the service to be useful to clients.
+
+Behaviors affect the service model locally at the client or service. Behaviors are not exposed as part of the metadata, and they are not shared between clients and services. Instead, they locally affect how the service model processes messages.
+
+Behaviors can be defined in configuration or in code. Different behaviors are available to clients and services.
