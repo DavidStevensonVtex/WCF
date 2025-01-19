@@ -227,3 +227,13 @@ A separate set of assemblies for:
 -   Service
 -   Business Components
 -   Data Access
+
+#### Defining a Service
+
+The first step in creating a service is to define a service contract. YOu can create a service contract by applying the `ServiceContractAttribute` to an interface or type. Methods on the interface or type will not be included in the service contract until the `OperationContractAttribute` is applied. In a typical service contract, all methods will be included in the contract -- after alll, the entire reason for defining a service contract is to expose operations as part of a service.
+
+Business interfaces should not be directly converted into service contracts. LIkewise, business components should not be directly converted to services. The service tier should instead be explicitly defined with the sole purpose of exposing public functionality and should internally consume business components, rather than embed business logic with the service implementation.
+
+When you implement a service contract as an interface, the service type implements this interface.
+
+An alternative to this approach is to apply both the `ServiceContractAttribute` and the `OperationContractAttribute` directly to the service type.
