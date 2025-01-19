@@ -603,3 +603,18 @@ The construction of the proxy may look like this:
 If there are several endpoints to choose from in the `<client>` configuration section, you are required to provide an endpoint configuration name to the proxy constructor:
 
 `HelloIndigoServiceClient proxy = new HelloIndigoServiceClient("basicHttp");`
+
+### Hosting a Service in IIS
+
+How messages reach a service endpoint is a matter of protocols and hosting. IIS can host services over the HTTP protocol, the Windows Activation Service (AS) an support others such as TCP and named pipes, and self-hosting can support many protocols and includes several deployment options such as console or Windows Forms applicaitons and Windows services.
+
+Selecting a hosting environment has nothing to do with service implementation, but everything to do with service deployment and overall system design.
+
+This lab will show you how to host an existing service type as part of a web site hosted in IIS.
+In the process, I'll also be illustrating other extended concepts such as:
+
+-   The WCF Service web site template
+-   Message-based activation
+-   Additional metadata behavior settings
+-   Exporting service descriptions.
+-   Consuming service description documents to generate client code.
