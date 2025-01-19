@@ -360,10 +360,23 @@ To see all the options for SvcUtil, from the command line you can type:
 
 _svcconfigeditor.exe_
 
-You can edit the <service.serviceModel> section for any client or host application file.
+You can edit the \<service.serviceModel\> section for any client or host application file.
 
 The wizard guides you through steps to configure services, bindings, behaviors, and more, which is particularly useful when you are new to WCF since you may not be familiar with each section of te configuration file.
 
 When starting from scratch, you can use the tool to add new services or client endpoints, to attach behaviors to services or endpoints, to supply base addresses for the host, to supply metadata exchange endpoints, and even to customize binding configurations.
 
 For existing applications, you may just use the tool to view settings and make minor changes.
+
+### ServicModel Configuration
+
+All configuration settings related to the service model are contained within the \<system.serviceModel\> section.
+
+Sections
+
+-   \<services\>
+-   \<client\>
+-   \<bindings\>
+-   \<behaviors\>
+
+Service model configuration settings can also be set at runtime through the proxy or `ServiceHost`; however, declarative configuration is often preferred to hardcoding settings in code.
