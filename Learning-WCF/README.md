@@ -368,7 +368,7 @@ When starting from scratch, you can use the tool to add new services or client e
 
 For existing applications, you may just use the tool to view settings and make minor changes.
 
-### ServicModel Configuration
+#### ServicModel Configuration
 
 All configuration settings related to the service model are contained within the \<system.serviceModel\> section.
 
@@ -380,3 +380,43 @@ Sections
 -   \<behaviors\>
 
 Service model configuration settings can also be set at runtime through the proxy or `ServiceHost`; however, declarative configuration is often preferred to hardcoding settings in code.
+
+#### ServiceHost Initialization
+
+Consider the `ServiceHost` constructor:
+
+`ServiceHost myServiceHost = new ServiceHost(typeof(HelloIndigo.HelloIndigoService));`
+
+```
+<service behaviorConfiguration="serviceBehavior" name="HelloIndigo.HelloIndigoService">
+    <host>...</host>
+    <endpoint>...</endpoint>
+    <endpoint>...</endpoint>
+</service>
+```
+
+The `<service>` element can include base addresses and service endpoints.
+
+```
+<host>
+    <baseAddresses>
+    <add baseAddress="http://localhost:8000/HelloIndigo" />
+    <add baseAddress="http://localhost:9000/HelloIndigo" />
+    <add baseAddress="net.pipe://localhost:8000/HelloIndigo" />
+</host>
+```
+
+One or more `<endpoint>` sections may be provided.
+An endpoint is defined by an address, contract, and binding.
+
+```
+<endpoint binding="basicHttpBinding" name="basicHttp" contract="Host.IHelloIndigoService" />
+<endpoint address="HelloIndigoService" binding="basicHttpBinding" name="basicHttp" contract="Host.IHelloIndigoService" />
+<endpoint address="http://localhost:8001/HelloIndigo/HelloIndigoService" binding="basicHttpBinding" name="basicHttp" contract="Host.IHelloIndigoService" />
+```
+
+Reasons why a service may expose multiple endpoints:
+
+-   The service implements multiple contracts, each requiring its own endpoint.
+-   The same or different service contracts must be accessible over multiple protocols.
+-   The same or different service contracts must be accessible by clients with different binding requirements, possibly related to security, reliable messaging, message size, or transactions.
