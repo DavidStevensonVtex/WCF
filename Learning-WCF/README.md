@@ -420,3 +420,42 @@ Reasons why a service may expose multiple endpoints:
 -   The service implements multiple contracts, each requiring its own endpoint.
 -   The same or different service contracts must be accessible over multiple protocols.
 -   The same or different service contracts must be accessible by clients with different binding requirements, possibly related to security, reliable messaging, message size, or transactions.
+
+#### Enabling Metadata Exchange
+
+A _metadata exchange_ endpoint is required to support the dynamic generation of proxy and configuration for client applications. You must explicitly enable metadata exchange by adding the endpoint and enabling the metadata exchange behavior.
+
+A metadata exchange(_mex_) endpoint is just like any other service endpoint in that it requires an address, binding and contract. The address for a metadata exchange endpoint requires a base address for the selected binding protocol. The contract must be `IMetadataExchange`, a predefined service contract belonging to the `System.ServiceModel.Description` namespace.
+
+As for the binding, there are several predefined mex bindings, including `MexHttpBinding`, `MexHttpsBinding`, `MexTcpBinding`, and `MexNamedPipeBinding`. That means you can expose a mex endpoint over HTTP, HTTPS, TCP, or named pipes, and have SvcUtil consume those endpoints.
+
+Supplying the endpoint is not sufficient on its own. The service metadata behavior must also be enabled.
+
+```
+<system.serviceModel>
+    <behaviors>
+        <serviceBehaviors>
+            <behavior name="serviceBehavior">
+                <serviceMetadata httpGetEnabled="true" httpsGetEnabled="true" />
+                <serviceDebug includeExceptionDetailInFaults="false" />
+            </behavior>
+        </serviceBehaviors>
+    </behaviors>
+    <services>
+        <service behaviorConfiguration="serviceBehavior" name="Host.HelloIndigoService">
+            <endpoint address="HelloIndigoService" binding="basicHttpBinding"
+                name="basicHttp" contract="Host.IHelloIndigoService">
+                <identity>
+                    <dns value="localhost" />
+                </identity>
+            </endpoint>
+            <endpoint address="mex" binding="mexHttpBinding" name="mex" contract="IMetadataExchange" />
+            <host>
+                <baseAddresses>
+                    <add baseAddress="http://localhost:8000/HelloIndigo" />
+                </baseAddresses>
+            </host>
+        </service>
+    </services>
+</system.serviceModel>
+```
