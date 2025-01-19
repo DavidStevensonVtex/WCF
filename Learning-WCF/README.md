@@ -308,3 +308,17 @@ The bare necessities reuired to communicate with a service are:
 `ChannelFactory<T>` is a service model type that can generate the client proxy and underlying channel stack. You provide the address, binding, and service contract type and call CreateChannel() to generate the channel stack discussed earlier.
 
 In order for communication between the client and service to succeed, the binding must be equivalent to the binding specified at the service endpoint. _Equivalence_ means that the transport protocol is the same, the message-encoding format is the same, and any additional messaging protocols used at the service to serialize messages are also used at the client.
+
+### Generating a Service and Client Proxy
+
+You'll use the following:
+
+-   Visual Studio service tmeplates
+-   Service Configuration Editor
+-   ServiceModel Metadata Utility (SvcUtil)
+
+You will use declarative configuration settings instead of code to configure the service host and client. To enable proxy generation, you'll access service metadata, which involves enabling a service behavior. In addition, you learn more about service configuration settings for base addresses, endpoints, bindings and behaviors.
+
+#### Using the WCF Service template
+
+1. In the Host project, Add -> New Item and select WCF Service, and name the file _HelloIndigoService.cs_.

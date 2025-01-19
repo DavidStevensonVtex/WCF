@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ServiceModel;
 
 namespace Host
 {
@@ -7,13 +6,15 @@ namespace Host
     {
         static void Main(string[] args)
         {
-            using (ServiceHost host = new ServiceHost(typeof(HelloIndigo.HelloIndigoService), new Uri("http://localhost:8000/HelloIndigo")))
+            try
             {
-                host.AddServiceEndpoint(typeof(HelloIndigo.IHelloIndigoService), new BasicHttpBinding(), "HelloIndigoService");
-                host.Open();
-
+                MyServiceHost.StartService();
                 Console.WriteLine("Press <ENTER> to terminate the service host");
                 Console.ReadLine();
+            }
+            finally
+            {
+                MyServiceHost.StopService();
             }
         }
     }
