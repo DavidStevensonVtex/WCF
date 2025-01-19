@@ -203,3 +203,5 @@ Behaviors are enabled either in configuration or by applying behavior attributes
 1. Create a new service contract and service implementation.
 1. Programmatically configure a service host, its endpoints, and bindings.
 1. Create a client application and open a client channel proxy to invoke the service.
+
+Visual Studio 2022 will need to be opened as Administrator to run this application.
