@@ -322,3 +322,4 @@ You will use declarative configuration settings instead of code to configure the
 #### Using the WCF Service template
 
 1. In the Host project, Add -> New Item and select WCF Service, and name the file _HelloIndigoService.cs_.
+1. In the Host project, right click the App.config and select Edit WCF Configuration.
