@@ -237,3 +237,9 @@ Business interfaces should not be directly converted into service contracts. LIk
 When you implement a service contract as an interface, the service type implements this interface.
 
 An alternative to this approach is to apply both the `ServiceContractAttribute` and the `OperationContractAttribute` directly to the service type.
+
+#### Hosting a Service
+
+Any managed process can host services. Within that process, you can create one or more `ServiceHost` instances, each associated with a particular service type and one or more endpoints for that type.
+
+Before opening the `ServiceHOst` instance, you can also provide it with base addresses if you are planning to create relative endpoints. In order to reach the service, at least one endpoint is required.
