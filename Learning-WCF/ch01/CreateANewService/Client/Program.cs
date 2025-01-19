@@ -1,5 +1,5 @@
-﻿using System;
-using System.ServiceModel;
+﻿using Client.localhost;
+using System;
 
 namespace Client
 {
@@ -7,8 +7,7 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            EndpointAddress ep = new EndpointAddress("http://localhost:8000/HelloIndigo/HelloIndigoService");
-            IHelloIndigoService proxy = ChannelFactory<IHelloIndigoService>.CreateChannel(new BasicHttpBinding(), ep);
+            HelloIndigoServiceClient proxy = new HelloIndigoServiceClient();
             string s = proxy.HelloIndigo();
             Console.WriteLine(s);
             Console.WriteLine("Press <Enter> to exit program.");

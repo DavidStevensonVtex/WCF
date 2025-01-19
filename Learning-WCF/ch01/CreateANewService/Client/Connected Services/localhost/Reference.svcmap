@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="fca9677f-f19b-4881-96d9-5b5b6e7600ca" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8000/HelloIndigo" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="HelloIndigo.disco" MetadataType="Disco" ID="a175fcd8-4ea9-4013-a03d-14992f463cbe" SourceId="1" SourceUrl="http://localhost:8000/HelloIndigo?disco" />
+    <MetadataFile FileName="HelloIndigo.xsd" MetadataType="Schema" ID="31a73245-c600-46ba-8dfa-315718692478" SourceId="1" SourceUrl="http://localhost:8000/HelloIndigo?xsd=xsd1" />
+    <MetadataFile FileName="HelloIndigo1.xsd" MetadataType="Schema" ID="b7f1bef8-fd2e-48f1-a049-781aa65f245d" SourceId="1" SourceUrl="http://localhost:8000/HelloIndigo?xsd=xsd0" />
+    <MetadataFile FileName="HelloIndigo.wsdl" MetadataType="Wsdl" ID="ad183f0f-4810-4858-8905-23d116472946" SourceId="1" SourceUrl="http://localhost:8000/HelloIndigo?wsdl=wsdl0" />
+    <MetadataFile FileName="HelloIndigoService.wsdl" MetadataType="Wsdl" ID="8ee174a8-4030-4760-a38a-9736059a5bcc" SourceId="1" SourceUrl="http://localhost:8000/HelloIndigo?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
