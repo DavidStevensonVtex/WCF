@@ -501,3 +501,51 @@ You can also programmatically configure service behaviors throug the `ServiceHos
 The `Description` property of the `ServiceHost` has a Behaviors collection.
 You can see if a behavior exists by calling the `Find<T>()` method on the collection.
 You can add new behaviors by calling `Add()` on the collection.
+
+##### Client behaviors
+
+Client behaviors implement `IEndpointBehavior`, also from `System.ServiceModel.Description` namespace.
+There are client behaviors to control debugging, security, serialization, timeouts, and routing.
+Endpoint behaviors interact with the sevice model at the client. Endpoint behaviors are configured in the `<endpointBehaviors>` section.
+
+```
+<behaviors>
+    <endpointBehaviors>
+        <behavior>
+            <callbackDebug includeExceptionDetailInFaults="true" />
+        </behavior>
+    </endpointBehaviors>
+</behaviors>
+```
+
+```
+<system.serviceModel>
+    <behaviors>
+        <serviceBehaviors>
+            <behavior name="clientBehavior">
+                ...
+            </behavior>
+        </serviceBehaviors>
+    </behaviors>
+    <client>
+        <endpoint address="net.tcp://localhost:9000/" binding="netTcpBinding"
+            contract="Client.localhost.IHelloIndigoService" behaviorConfiguration="clientBehavior">
+        </endpoint>
+    </client>
+</system.serviceModel>
+```
+
+The `Endpoint` property of the client proxy has a `Behaviors` collection through which you can search for existing behaviors and add behaviors and add behaviors -- similar to the way you would for the `ServiceHost`.
+
+```
+HelloIndigoServiceClient proxy = new HelloIndigoServiceClient();
+
+ServiceDebugBehavior debugBehavior = proxy.Endpoint.Behaviors.Find<ServiceDebugBehavior>()
+
+if (debugBehavior == null)
+{
+    debugBehavior = new ServiceDebugBehavior();
+    debugBehavior.IncludeExceptionDetailInFaults = true;
+    proxy.Endpoint.Behaviors.Add(debugBehavior);
+}
+```
