@@ -289,3 +289,22 @@ The choice of binding defines the communication channel. `BasicHttpBinding` supp
 Each endpoint is associated with a particular service contract that determines the operations available at the endpoint.
 
 A service with multiple contracts could expose a different endpoint for each contract it wants to make accessible to clients.
+
+#### Creating a Client Proxy
+
+Clients use a proxy to consume a service endpoint. A proxy can be created manually using a channel factory, or it can be generated using tools.
+
+The bare necessities reuired to communicate with a service are:
+
+-   The address of the service endpoint
+-   The protocols required to communicate with the service endpoint or the binding
+-   The service contract metadata as described by the service contract associated with endpoint
+
+```
+    EndpointAddress ep = new EndpointAddress("http://localhost:8000/HelloIndigo/HelloIndigoService");
+    IHelloIndigoService proxy = ChannelFactory<IHelloIndigoService>.CreateChannel(new BasicHttpBinding(), ep);
+```
+
+`ChannelFactory<T>` is a service model type that can generate the client proxy and underlying channel stack. You provide the address, binding, and service contract type and call CreateChannel() to generate the channel stack discussed earlier.
+
+In order for communication between the client and service to succeed, the binding must be equivalent to the binding specified at the service endpoint. _Equivalence_ means that the transport protocol is the same, the message-encoding format is the same, and any additional messaging protocols used at the service to serialize messages are also used at the client.
