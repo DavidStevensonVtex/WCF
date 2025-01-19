@@ -330,3 +330,40 @@ You will use declarative configuration settings instead of code to configure the
 cd D:\drs\WCF\GitHub\WCF\Learning-WCF\ch01\CreateANewService\ClientTwo>
 svcutil /d:. /o:serviceproxy.cs /config:app.config http://localhost:8000/HelloIndigo
 ```
+
+#### Service Templates
+
+_WCF Service Library_
+
+#### ServiceModel Metadata Utility
+
+Executable named _svcutil.exe_.
+
+This tool can be used for two key purposes:
+
+-   To generate code and configuration settings from metdata.
+-   To generate metadata from code and configuration.
+
+With SvcUtil you can export and import metadata, validate services, and manipulate how types are generated and shared between services and clients.
+
+Add Service Reference uses SvcUtil to generate proxies and configuration, but from the command line, you can exercise greater control over this process.
+
+```
+svcutil /d:. /o:serviceproxy.cs /config:app.config http://localhost:8000/HelloIndigo
+```
+
+To see all the options for SvcUtil, from the command line you can type:
+
+`svcutil /?`
+
+#### Service Configuration Editor
+
+_svcconfigeditor.exe_
+
+You can edit the <service.serviceModel> section for any client or host application file.
+
+The wizard guides you through steps to configure services, bindings, behaviors, and more, which is particularly useful when you are new to WCF since you may not be familiar with each section of te configuration file.
+
+When starting from scratch, you can use the tool to add new services or client endpoints, to attach behaviors to services or endpoints, to supply base addresses for the host, to supply metadata exchange endpoints, and even to customize binding configurations.
+
+For existing applications, you may just use the tool to view settings and make minor changes.
