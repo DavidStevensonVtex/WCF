@@ -323,3 +323,10 @@ You will use declarative configuration settings instead of code to configure the
 
 1. In the Host project, Add -> New Item and select WCF Service, and name the file _HelloIndigoService.cs_.
 1. In the Host project, right click the App.config and select Edit WCF Configuration.
+
+#### Generating a proxy using the Service Model Metadata Utility
+
+```
+cd D:\drs\WCF\GitHub\WCF\Learning-WCF\ch01\CreateANewService\ClientTwo>
+svcutil /d:. /o:serviceproxy.cs /config:app.config http://localhost:8000/HelloIndigo
+```
