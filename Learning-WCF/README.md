@@ -243,3 +243,49 @@ An alternative to this approach is to apply both the `ServiceContractAttribute` 
 Any managed process can host services. Within that process, you can create one or more `ServiceHost` instances, each associated with a particular service type and one or more endpoints for that type.
 
 Before opening the `ServiceHOst` instance, you can also provide it with base addresses if you are planning to create relative endpoints. In order to reach the service, at least one endpoint is required.
+
+#### Exposing Service Endpoints
+
+Endpoints expose service functionality at a particular address. Each endpoint is associated with a particular contract and a set of protocols as defined by the binding configuration. For each service, one or more endpoints may be exposed if multiple contracts are present or if multiple protocols are desired to access service functionality.
+
+##### Addresses
+
+The address can be a complete URI or a relative address like that used in the lab.
+
+Complete URI:
+
+```
+using (ServiceHost host = new ServiceHost(typeof(HelloIndigo.HelloIndigoService))
+{
+    host.AddServiceEndpoint(typeof(HelloIndigo.IHelloIndigoService), new BasicHttpBinding(), "http://localhost:8000/HelloIndigo/HelloIndigoService");
+    // other code
+}
+```
+
+Relative Address:
+
+```
+    using (ServiceHost host = new ServiceHost(typeof(HelloIndigo.HelloIndigoService), new Uri("http://localhost:8000/HelloIndigo")))
+    {
+        host.AddServiceEndpoint(typeof(HelloIndigo.IHelloIndigoService), new BasicHttpBinding(), "HelloIndigoService");
+        // other code
+    }
+```
+
+In practice, a base address should be supplied for each transport protocol over which the service can be accessed -- for example, HTTP, TCP, named pipes or MSMQ.
+
+Using relative endpoint addressing makes it possible to modify the base URI to move all associated relative endpoints to a new domain or port. This can siplify the deployment process.
+
+##### Bindings
+
+The binding provided to an endpoint can be any of the standard bindings supplied by the service model.
+
+host.AddServiceEndpoint(typeof(HelloIndigo.IHelloIndigoService), **new BasicHttpBinding()**, "HelloIndigoService");
+
+The choice of binding defines the communication channel. `BasicHttpBinding` supports requests over HTTP protocol sent in text format without any additional protocols for addressing, reliable messaging, security or transactions.
+
+##### Contracts
+
+Each endpoint is associated with a particular service contract that determines the operations available at the endpoint.
+
+A service with multiple contracts could expose a different endpoint for each contract it wants to make accessible to clients.
